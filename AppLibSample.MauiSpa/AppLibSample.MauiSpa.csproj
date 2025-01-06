@@ -65,9 +65,9 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.21" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.21" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
-		<PackageReference Include="VpnHood.AppLib.Resources" Version="5.0.621" />
-		<PackageReference Include="VpnHood.AppLib.WebServer" Version="5.0.621" />
-		<PackageReference Include="VpnHood.AppLib.Maui.Common" Version="5.0.621" />
+		<PackageReference Include="VpnHood.AppLib.Resources" Version="5.0.634" />
+		<PackageReference Include="VpnHood.AppLib.WebServer" Version="5.0.634" />
+		<PackageReference Include="VpnHood.AppLib.Maui.Common" Version="5.0.634" />
 	</ItemGroup>
 
 </Project>
