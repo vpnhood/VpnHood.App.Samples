@@ -23,7 +23,7 @@ public static class MauiProgram
         var resource = DefaultAppResource.Resources;
         resource.Strings.AppName = "VpnHood Client Sample";
         const string accessKey = ClientOptions.SampleAccessKey; // This is for test purpose only and can not be used in production
-        VpnHoodMauiApp.Init(new AppOptions("com.vpnhood.client.sample", IsDebugMode)
+        VpnHoodMauiApp.Init(new AppOptions("com.vpnhood.client.sample", "VpnHoodSample", IsDebugMode)
         {
             Resource = resource, 
             AccessKeys = [accessKey]
