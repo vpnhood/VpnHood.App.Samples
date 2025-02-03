@@ -70,8 +70,8 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.30" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.30" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.1" />
-		<PackageReference Include="VpnHood.AppLib.Resources" Version="5.0.635" />
-		<PackageReference Include="VpnHood.AppLib.Maui.Common" Version="5.0.635" />
+		<PackageReference Include="VpnHood.AppLib.Resources" Version="5.1.654" />
+		<PackageReference Include="VpnHood.AppLib.Maui.Common" Version="5.1.654" />
 	</ItemGroup>
 
 </Project>
