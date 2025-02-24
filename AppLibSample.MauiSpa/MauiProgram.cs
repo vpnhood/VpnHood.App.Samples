@@ -3,7 +3,7 @@ using VpnHood.AppLib;
 using VpnHood.AppLib.Resources;
 using VpnHood.AppLib.WebServer;
 using VpnHood.AppLib.Maui.Common;
-using VpnHood.Core.Client;
+using VpnHood.Core.Client.Abstractions;
 
 namespace VpnHood.App.AppLibSample.MauiSpa;
 
@@ -23,12 +23,11 @@ public static class MauiProgram
 
         var resource = DefaultAppResource.Resources;
         resource.Strings.AppName = "VpnHood Client Sample";
-        const string accessKey = ClientOptions.SampleAccessKey; // This is for test purpose only and can not be used in production
         VpnHoodMauiApp.Init(new AppOptions("com.vpnhood.client.sample", "VpnHoodSample", IsDebugMode)
         {
             StorageFolderPath = AppOptions.BuildStorageFolderPath("VpnHoodSample"),
             Resource = resource,
-            AccessKeys = [accessKey]
+            AccessKeys = [ClientOptions.SampleAccessKey] // This is for test purpose only and can not be used in production
         });
 
         // init web server with spa zip data

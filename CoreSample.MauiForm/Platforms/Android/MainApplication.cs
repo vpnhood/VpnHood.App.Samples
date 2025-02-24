@@ -12,7 +12,8 @@ public class MainApplication(IntPtr handle, JniHandleOwnership ownership)
 
     protected override MauiApp CreateMauiApp()
     {
-        var mauiApp = MauiProgram.CreateMauiApp(AndroidDevice.Create());
+        var device = new AndroidDevice();
+        var mauiApp = MauiProgram.CreateMauiApp(device);
         return mauiApp;
     }
 }

@@ -3,7 +3,7 @@
 		<Description>Simple VpnHood! Client Sample usage for AndroidForm by AppLib</Description>
 		<ApplicationTitle>VpnHood! CoreSample AndroidForm</ApplicationTitle>
 		<RootNamespace>VpnHood.App.CoreSample.AndroidForm</RootNamespace>
-		<ApplicationId>com.vpnhood.coresample.AndroidForm</ApplicationId>		
+		<ApplicationId>com.vpnhood.coresample.AndroidForm</ApplicationId>
 		<ApplicationVersion>438</ApplicationVersion>
 		<TargetFramework>net9.0-android35.0</TargetFramework>
 		<OutputType>Exe</OutputType>
@@ -40,8 +40,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="VpnHood.Core.Client" Version="5.1.654" />
-	  <PackageReference Include="VpnHood.Core.Client.Device.Android" Version="5.1.654" />
+		<PackageReference Include="VpnHood.Core.Client.VpnServices.Manager" Version="6.0.658-prerelease" />
+		<PackageReference Include="VpnHood.Core.Client.Device.Android" Version="6.0.658-prerelease" />
 	</ItemGroup>
 
 </Project>

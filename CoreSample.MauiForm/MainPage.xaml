@@ -5,8 +5,8 @@
 
     <ScrollView>
         <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
+            Padding="20,0"
+            Spacing="20">
             <Image
                 Source="vpnhood.png"
                 HeightRequest="100"
@@ -35,6 +35,15 @@
                     FontSize="Small"
                     TextColor="LightGreen"/>
             </HorizontalStackLayout>
+
+            <HorizontalStackLayout HorizontalOptions="Center" >
+                <Label HorizontalTextAlignment="Center"
+                       x:Name="IpLabel"
+                       Text=""
+                       FontSize="Small"
+                       TextColor="LightGreen"/>
+            </HorizontalStackLayout>
+
 
             <StackLayout HorizontalOptions="Center">
                 <Label VerticalTextAlignment="Center"

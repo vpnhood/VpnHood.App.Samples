@@ -1,5 +1,8 @@
-﻿using VpnHood.Core.Client;
-using VpnHood.Core.Common.Tokens;
+﻿using VpnHood.Core.Client.Abstractions;
+using VpnHood.Core.Client.VpnServices.Abstractions;
+using VpnHood.Core.Client.VpnServices.Manager;
+using VpnHood.Core.Common.Net;
+using VpnHood.Core.Common.Utils;
 
 namespace VpnHood.App.CoreSample.MauiForm;
 
@@ -7,12 +10,16 @@ namespace VpnHood.App.CoreSample.MauiForm;
 // ReSharper disable once RedundantExtendsListEntry
 public partial class MainPage : ContentPage
 {
-    private VpnHoodClient? _vpnHoodClient;
-    private bool IsConnectingOrConnected => _vpnHoodClient?.State is ClientState.Connecting or ClientState.Connected;
+    private VpnServiceManager VpnServiceManager => MauiProgram.VpnServiceManager;
+    private ConnectionInfo ConnectionInfo => VpnServiceManager.ConnectionInfo;
+    private bool CanDisconnect => ConnectionInfo.ClientState is 
+        ClientState.Connecting or ClientState.Connected or ClientState.Initializing or 
+        ClientState.WaitingForAd or ClientState.Waiting;
 
     public MainPage()
     {
         InitializeComponent();
+        VpnServiceManager.StateChanged += (_, _) => UpdateUi();
         UpdateUi();
     }
 
@@ -26,9 +33,9 @@ public partial class MainPage : ContentPage
         try
         {
             // disconnect if already connected
-            if (IsConnectingOrConnected)
+            if (CanDisconnect)
             {
-                await Disconnect();
+                _ =  Disconnect();
                 return;
             }
 
@@ -36,14 +43,11 @@ public partial class MainPage : ContentPage
             ErrorLabel.Text = string.Empty;
 
             // Connect
-            var clientId = Guid.Parse("7BD6C156-EEA3-43D5-90AF-B118FE47ED0B").ToString();
-            const string accessKey = ClientOptions.SampleAccessKey; // This is for test purpose only and can not be used in production
-            var token = Token.FromAccessKey(accessKey);
-            var packetCapture = await MauiProgram.VpnHoodDevice.CreatePacketCapture(MauiProgram.CurrentUiContext);
-
-            _vpnHoodClient = new VpnHoodClient(packetCapture, clientId, token, new ClientOptions());
-            _vpnHoodClient.StateChanged += (_, _) => UpdateUi();
-            await _vpnHoodClient.Connect();
+            await VpnServiceManager.Start(new ClientOptions
+            {
+                ClientId = Guid.Parse("7BD6C156-EEA3-43D5-90AF-B118FE47ED0B").ToString(),
+                AccessKey = ClientOptions.SampleAccessKey // This is for test purpose only and can not be used in production
+            }, CancellationToken.None);
         }
         catch (Exception ex)
         {
@@ -56,15 +60,33 @@ public partial class MainPage : ContentPage
     {
         MainThread.BeginInvokeOnMainThread(() =>
         {
-            StatusLabel.Text = _vpnHoodClient?.State.ToString() ?? "Disconnected";
-            CounterBtn.Text = _vpnHoodClient == null || _vpnHoodClient?.State is ClientState.None or ClientState.Disposed ? "Connect" : "Disconnect";
+            StatusLabel.Text = ConnectionInfo.ClientState.ToString();
+            CounterBtn.Text = ConnectionInfo.ClientState is ClientState.None or ClientState.Disposed ? "Connect" : "Disconnect";
         });
+        _ = UpdateIp();
     }
+
+    private bool? _wasConnected;
+    private async Task UpdateIp()
+    {
+        using var asyncLock = await AsyncLock.LockAsync("UpdateIp");
+        var isConnected = ConnectionInfo.ClientState is ClientState.Connected;
+        if (_wasConnected == null || _wasConnected.Value != isConnected)
+        {
+            _wasConnected = isConnected;
+            using var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+            var ipAddresses = await IPAddressUtil.GetPublicIpAddresses(cancellationTokenSource.Token);
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                IpLabel.Text = string.Join(" , ", ipAddresses.Select(x => x.ToString()));
+                IpLabel.TextColor = isConnected ? Colors.Green : Colors.Red;
+            });
+        }
+    }
+
     private async Task Disconnect()
     {
-        if (_vpnHoodClient != null)
-            await _vpnHoodClient.DisposeAsync();
-        _vpnHoodClient = null;
+        await VpnServiceManager.Stop();
         UpdateUi();
     }
 }

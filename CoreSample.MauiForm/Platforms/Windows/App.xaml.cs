@@ -22,8 +22,9 @@ public partial class App : MauiWinUIApplication
 
     protected override MauiApp CreateMauiApp()
     {
-        MauiProgram.CurrentUiContext = new WinUiContext();
-        return MauiProgram.CreateMauiApp(new WinDivertDevice());
+        var storageFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VpnHood.App.CoreSample.MauiForm");
+        var device =  new WinDevice(storageFolder, isDebugMode: true);
+        return MauiProgram.CreateMauiApp(device);
     }
 
 }

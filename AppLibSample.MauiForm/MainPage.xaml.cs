@@ -1,4 +1,6 @@
 ﻿using VpnHood.AppLib;
+using VpnHood.Core.Common.Net;
+using VpnHood.Core.Common.Utils;
 
 namespace VpnHood.App.AppLibSample.MauiForm;
 
@@ -26,7 +28,7 @@ public partial class MainPage : ContentPage
                 await VpnHoodApp.Instance.Connect();
 
             else if (VpnHoodApp.Instance.State.CanDisconnect)
-                await VpnHoodApp.Instance.Disconnect(true);
+                _ = VpnHoodApp.Instance.Disconnect();
         }
         catch (Exception ex)
         {
@@ -43,5 +45,25 @@ public partial class MainPage : ContentPage
             CounterBtn.Text = VpnHoodApp.Instance.State.CanConnect ? "Connect" : "Disconnect";
             ErrorLabel.Text = VpnHoodApp.Instance.State.LastError != null ? $"Error: {VpnHoodApp.Instance.State.LastError?.Message}" : string.Empty;
         });
+
+        _ = UpdateIp();
+    }
+
+    private bool? _wasConnected;
+    private async Task UpdateIp()
+    {
+        using var asyncLock = await AsyncLock.LockAsync("UpdateIp");
+        var isConnected = VpnHoodApp.Instance.State.ConnectionState is AppConnectionState.Connected;
+        if (_wasConnected == null || _wasConnected.Value != isConnected)
+        {
+            _wasConnected = isConnected;
+            using var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+            var ipAddresses = await IPAddressUtil.GetPublicIpAddresses(cancellationTokenSource.Token);
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                IpLabel.Text = string.Join(" , ", ipAddresses.Select(x => x.ToString()));
+                IpLabel.TextColor = isConnected ? Colors.Green : Colors.Red;
+            });
+        }
     }
 }

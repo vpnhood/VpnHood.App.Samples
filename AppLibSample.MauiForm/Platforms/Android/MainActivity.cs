@@ -4,6 +4,7 @@ using VpnHood.AppLib.Droid.Common.Activities;
 using VpnHood.AppLib.Droid.Common.Constants;
 using VpnHood.AppLib.Maui.Common;
 
+// ReSharper disable once CheckNamespace
 namespace VpnHood.App.AppLibSample.MauiForm;
 
 [Activity(
