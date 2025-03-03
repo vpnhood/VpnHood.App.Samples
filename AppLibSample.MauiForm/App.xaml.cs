@@ -13,9 +13,9 @@ public partial class App
     {
         var window = new Window(new AppShell())
         {
-            Width = VpnHoodApp.Instance.Resource.WindowSize.Width,
-            Height = VpnHoodApp.Instance.Resource.WindowSize.Height,
-            Title = VpnHoodApp.Instance.Resource.Strings.AppName
+            Width = VpnHoodApp.Instance.Resources.WindowSize.Width,
+            Height = VpnHoodApp.Instance.Resources.WindowSize.Height,
+            Title = VpnHoodApp.Instance.Resources.Strings.AppName
         };
         return window;
     }

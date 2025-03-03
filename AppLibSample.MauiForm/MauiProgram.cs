@@ -1,11 +1,14 @@
 ﻿using Microsoft.Extensions.Logging;
 using VpnHood.AppLib;
+using VpnHood.AppLib.Abstractions;
+using VpnHood.AppLib.Assets.ClassicSpa;
+using VpnHood.AppLib.Assets.Ip2LocationLite;
 using VpnHood.AppLib.Maui.Common;
-using VpnHood.AppLib.Resources;
 using VpnHood.Core.Client.Abstractions;
 
 namespace VpnHood.App.AppLibSample.MauiForm;
 
+// ReSharper disable UseObjectOrCollectionInitializer
 // ReSharper disable StringLiteralTypo
 public static class MauiProgram
 {
@@ -20,11 +23,16 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
-        var resource = DefaultAppResource.Resources;
+        var resource = new AppResources();
+        resource.IpLocationZipData = Ip2LocationLiteDb.ZipData;
+        resource.SpaZipData = ClassicSpaResources.SpaZipData;
+        resource.Colors.NavigationBarColor = ClassicSpaResources.NavigationBarColor;
+        resource.Colors.WindowBackgroundColor = ClassicSpaResources.WindowBackgroundColor;
+        resource.Colors.ProgressBarColor = ClassicSpaResources.ProgressBarColor; resource.Strings.AppName = "VpnHood Client Sample";
         resource.Strings.AppName = "VpnHood Client Sample";
         VpnHoodMauiApp.Init(new AppOptions("com.vpnhood.client.sample", "VpnHoodSample", IsDebugMode)
         {
-            Resource = resource, 
+            Resources = resource, 
             AccessKeys = [ClientOptions.SampleAccessKey], // This is for test purpose only and can not be used in production
             EventWatcherInterval = TimeSpan.FromSeconds(1)
         });

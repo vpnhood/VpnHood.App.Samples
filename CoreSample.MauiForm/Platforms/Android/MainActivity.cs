@@ -2,7 +2,7 @@
 using Android.OS;
 using Android.Service.QuickSettings;
 using VpnHood.Core.Client.Device.Droid;
-using VpnHood.Core.Client.Device;
+using VpnHood.Core.Client.Device.UiContexts;
 
 namespace VpnHood.App.CoreSample.MauiForm;
 

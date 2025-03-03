@@ -1,5 +1,6 @@
-﻿using VpnHood.Core.Client.Device;
+﻿using VpnHood.Core.Client.Device.UiContexts;
 
+// ReSharper disable once CheckNamespace
 namespace VpnHood.App.CoreSample.MauiForm.WinUI;
 
 public class WinUiContext : IUiContext

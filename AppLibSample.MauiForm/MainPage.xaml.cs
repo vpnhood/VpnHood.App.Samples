@@ -1,6 +1,6 @@
 ﻿using VpnHood.AppLib;
-using VpnHood.Core.Common.Net;
-using VpnHood.Core.Common.Utils;
+using VpnHood.Core.Toolkit.Net;
+using VpnHood.Core.Toolkit.Utils;
 
 namespace VpnHood.App.AppLibSample.MauiForm;
 

@@ -66,18 +66,18 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.40" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.40" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.2" />
-		<PackageReference Include="VpnHood.Core.Client.VpnServices.Manager" Version="6.0.658-prerelease" />
+		<PackageReference Include="VpnHood.Core.Client.VpnServices.Manager" Version="6.0.673" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
 	  <PackageReference Include="VpnHood.Core.Client.Device.Android">
-	    <Version>6.0.658-prerelease</Version>
+	    <Version>6.0.673</Version>
 	  </PackageReference>
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'Windows'">
 		<PackageReference Include="VpnHood.Core.Client.Device.WinDivert">
-			<Version>6.0.658-prerelease</Version>
+			<Version>6.0.673</Version>
 		</PackageReference>
 	</ItemGroup>
 

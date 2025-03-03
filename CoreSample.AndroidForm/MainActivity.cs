@@ -1,12 +1,12 @@
 ﻿using Android.Graphics;
 using VpnHood.Core.Client.Abstractions;
-using VpnHood.Core.Client.Device;
 using VpnHood.Core.Client.Device.Droid;
 using VpnHood.Core.Client.Device.Droid.ActivityEvents;
+using VpnHood.Core.Client.Device.UiContexts;
 using VpnHood.Core.Client.VpnServices.Abstractions;
 using VpnHood.Core.Client.VpnServices.Manager;
-using VpnHood.Core.Common.Net;
-using VpnHood.Core.Common.Utils;
+using VpnHood.Core.Toolkit.Net;
+using VpnHood.Core.Toolkit.Utils;
 
 // ReSharper disable StringLiteralTypo
 namespace VpnHood.App.CoreSample.AndroidForm;
