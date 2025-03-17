@@ -25,8 +25,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="VpnHood.Core.Client" Version="6.0.673" />
-		<PackageReference Include="VpnHood.Core.Client.Device.WinDivert" Version="6.0.673" />
+		<PackageReference Include="VpnHood.Core.Client" Version="6.0.676" />
+		<PackageReference Include="VpnHood.Core.VpnAdapters.WinDivert" Version="6.0.676" />
 	</ItemGroup>
 
 	<ItemGroup>

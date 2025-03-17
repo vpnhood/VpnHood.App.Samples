@@ -1,7 +1,7 @@
 ﻿using VpnHood.Core.Client;
 using VpnHood.Core.Client.Abstractions;
-using VpnHood.Core.Client.Device.WinDivert;
 using VpnHood.Core.Tunneling.Sockets;
+using VpnHood.Core.VpnAdapters.WinDivert;
 
 // ReSharper disable StringLiteralTypo
 namespace VpnHood.App.CoreSample.WinConsole;
@@ -13,9 +13,10 @@ internal class Program
         Console.WriteLine("Hello VpnClient!");
 
         // a clientId should be generated for each client
-        var winDivertVpnAdapter = new WinDivertVpnAdapter();
+        var winDivertVpnAdapter = new WinDivertVpnAdapter(new WinDivertVpnAdapterSettings{AdapterName = "TestAdapter"});
         var clientOptions = new ClientOptions
         {
+            AppName = "TestApp",
             ClientId = Guid.Parse("7BD6C156-EEA3-43D5-90AF-B118FE47ED0A").ToString(),
             AccessKey = ClientOptions.SampleAccessKey // This is for test purpose only and can not be used in production
         };

@@ -94,6 +94,7 @@ public class MainActivity : ActivityEvent
             // start vpn 
             await VpnServiceManager.Start(new ClientOptions
             {
+                AppName = "TestApp",
                 ClientId = Guid.Parse("7BD6C156-EEA3-43D5-90AF-B118FE47ED0B").ToString(),
                 AccessKey = ClientOptions.SampleAccessKey // This is for test purpose only and can not be used in production
             }, CancellationToken.None);
