@@ -72,12 +72,12 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.4" />
 		<PackageReference Include="VpnHood.AppLib.Assets.ClassicSpa" Version="6.0.703" />
 		<PackageReference Include="VpnHood.AppLib.Assets.Ip2LocationLite" Version="6.0.682" />
-		<PackageReference Include="VpnHood.AppLib.Maui.Common" Version="6.0.684" />
+		<PackageReference Include="VpnHood.AppLib.Maui.Common" Version="6.0.690" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0-android35.0'">
 	  <PackageReference Include="VpnHood.Core.Client.Device.Android">
-	    <Version>6.0.684</Version>
+	    <Version>6.0.690</Version>
 	  </PackageReference>
 	</ItemGroup>
 
