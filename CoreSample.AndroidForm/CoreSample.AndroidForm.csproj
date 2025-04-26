@@ -40,8 +40,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="VpnHood.Core.Client.VpnServices.Manager" Version="6.0.690" />
-		<PackageReference Include="VpnHood.Core.Client.Device.Android" Version="6.0.690" />
+		<PackageReference Include="VpnHood.Core.Client.VpnServices.Manager" Version="6.0.696" />
+		<PackageReference Include="VpnHood.Core.Client.Device.Android" Version="6.0.696" />
 	</ItemGroup>
 
 </Project>
