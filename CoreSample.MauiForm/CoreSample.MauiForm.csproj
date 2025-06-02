@@ -63,18 +63,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.60" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.60" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.4" />
-		<PackageReference Include="VpnHood.Core.Client.VpnServices.Manager" Version="6.0.698" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.70" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.70" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.5" />
+		<PackageReference Include="VpnHood.Core.Client.VpnServices.Manager" Version="7.0.708" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
-		<PackageReference Include="VpnHood.Core.Client.Device.Android" Version="6.0.698" />
+		<PackageReference Include="VpnHood.Core.Client.Device.Android" Version="7.0.708" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'Windows'">
-		<PackageReference Include="VpnHood.Core.Client.Device.Win" Version="6.0.698" />
+		<PackageReference Include="VpnHood.Core.Client.Device.Win" Version="7.0.708" />
 	</ItemGroup>
 
 </Project>
