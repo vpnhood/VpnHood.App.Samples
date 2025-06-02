@@ -5,6 +5,7 @@
 
 using VpnHood.Core.Client.Device.Win;
 
+// ReSharper disable once CheckNamespace
 namespace VpnHood.App.CoreSample.MauiForm.WinUI;
 /// <summary>
 /// Provides application-specific behavior to supplement the default Application class.

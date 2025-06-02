@@ -13,7 +13,13 @@ internal class Program
         Console.WriteLine("Hello VpnClient!");
 
         // a clientId should be generated for each client
-        var winDivertVpnAdapter = new WinDivertVpnAdapter(new WinDivertVpnAdapterSettings{AdapterName = "TestAdapter"});
+        var winDivertVpnAdapter = new WinDivertVpnAdapter(new WinDivertVpnAdapterSettings
+        {
+            AdapterName = "TestAdapter",
+            Blocking = true,
+            AutoDisposePackets = true
+        });
+
         var clientOptions = new ClientOptions
         {
             AppName = "TestApp",
