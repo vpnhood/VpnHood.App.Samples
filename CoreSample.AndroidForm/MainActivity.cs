@@ -19,7 +19,7 @@ public class MainActivity : ActivityEvent
     private TextView _statusTextView = null!;
     private TextView _ipTextView = null!;
 
-    private VpnServiceManager VpnServiceManager { get; } = new(new AndroidDevice(), null!, TimeSpan.FromSeconds(1));
+    private VpnServiceManager VpnServiceManager { get; } = new(new AndroidDevice(), TimeSpan.FromSeconds(1));
     private ConnectionInfo ConnectionInfo => VpnServiceManager.ConnectionInfo;
     private bool CanDisconnect => ConnectionInfo.ClientState is
         ClientState.Connecting or ClientState.Connected or ClientState.Initializing or
@@ -108,7 +108,7 @@ public class MainActivity : ActivityEvent
 
     private async Task Disconnect()
     {
-        await VpnServiceManager.Stop();
+        await VpnServiceManager.TryStop();
         UpdateUi();
     }
 

@@ -87,7 +87,7 @@ public partial class MainPage : ContentPage
 
     private async Task Disconnect()
     {
-        await VpnServiceManager.Stop();
+        await VpnServiceManager.TryStop();
         UpdateUi();
     }
 }

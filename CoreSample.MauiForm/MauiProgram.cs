@@ -9,7 +9,7 @@ public static class MauiProgram
     public static VpnServiceManager VpnServiceManager { get; private set; } = null!;
     public static MauiApp CreateMauiApp(IDevice device)
     {
-        VpnServiceManager = new VpnServiceManager(device, adService: null, eventWatcherInterval: TimeSpan.FromSeconds(1));
+        VpnServiceManager = new VpnServiceManager(device, eventWatcherInterval: TimeSpan.FromSeconds(1));
 
         var builder = MauiApp.CreateBuilder();
         builder
