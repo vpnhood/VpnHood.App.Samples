@@ -75,10 +75,4 @@
 		<PackageReference Include="VpnHood.AppLib.Maui.Common" Version="7.3.754" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0-android36.0'">
-	  <PackageReference Include="VpnHood.Core.Client.Device.Android">
-	    <Version>7.3.754</Version>
-	  </PackageReference>
-	</ItemGroup>
-
 </Project>
