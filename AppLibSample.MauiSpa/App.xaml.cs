@@ -1,4 +1,5 @@
 ﻿using VpnHood.AppLib;
+using VpnHood.AppLib.Maui.Common;
 using VpnHood.AppLib.WebServer;
 
 namespace VpnHood.App.AppLibSample.MauiSpa;
@@ -25,6 +26,6 @@ public partial class App
     {
         base.CleanUp();
         if (VpnHoodAppWebServer.IsInit) VpnHoodAppWebServer.Instance.Dispose();
-        if (VpnHoodApp.IsInit) _ = VpnHoodApp.Instance.DisposeAsync();
+        if (VpnHoodMauiApp.IsInit) VpnHoodMauiApp.Instance.Dispose();
     }
 }

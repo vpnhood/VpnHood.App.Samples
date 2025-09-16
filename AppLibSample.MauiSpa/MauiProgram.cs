@@ -41,12 +41,7 @@ public static class MauiProgram
         });
 
         // init web server with spa zip data
-        ArgumentNullException.ThrowIfNull(VpnHoodApp.Instance.Resources.SpaZipData);
-        using var spaZipStream = new MemoryStream(VpnHoodApp.Instance.Resources.SpaZipData);
-        VpnHoodAppWebServer.Init(new WebServerOptions
-        {
-            SpaZipStream = spaZipStream
-        });
+        VpnHoodAppWebServer.Init(new WebServerOptions());
 
         if (IsDebugMode)
             builder.Logging.AddDebug();
