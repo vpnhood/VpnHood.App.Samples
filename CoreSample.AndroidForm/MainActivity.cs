@@ -123,20 +123,23 @@ public class MainActivity : ActivityEvent
         _ = UpdateIp();
     }
 
-    private bool? _wasConnected;
+    private ClientState? _lastClientState;
     private async Task UpdateIp()
     {
         using var asyncLock = await AsyncLock.LockAsync("UpdateIp");
-        var isConnected = ConnectionInfo.ClientState is ClientState.Connected;
-        if (_wasConnected == null || _wasConnected.Value != isConnected)
+        var clientState = ConnectionInfo.ClientState;
+        if (_lastClientState != clientState &&
+            clientState is ClientState.Connected or ClientState.None or ClientState.Disposed)
         {
-            _wasConnected = isConnected;
+            _lastClientState = clientState;
+            await Task.Delay(1000);
+
             using var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(5));
             var ipAddresses = await IPAddressUtil.GetPublicIpAddresses(cancellationTokenSource.Token);
             RunOnUiThread(() =>
             {
                 _ipTextView.Text = " ( " + string.Join(" , ", ipAddresses.Select(x => x.ToString())) + " )";
-                _ipTextView.SetTextColor(isConnected  ? Color.DarkGreen : Color.DarkRed);
+                _ipTextView.SetTextColor(clientState is ClientState.Connected ? Color.DarkGreen : Color.DarkRed);
             });
         }
     }

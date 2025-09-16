@@ -24,6 +24,6 @@ public partial class App
     protected override void CleanUp()
     {
         base.CleanUp();
-        if (VpnHoodMauiApp.IsInit) VpnHoodMauiApp.Instance.Dispose();
+        //if (VpnHoodAppMaui.IsInit) VpnHoodAppMaui.Instance.Dispose();
     }
 }

@@ -13,6 +13,25 @@ namespace VpnHood.App.AppLibSample.MauiSpa;
 // ReSharper disable StringLiteralTypo
 public static class MauiProgram
 {
+    private static AppOptions CreateAppOptions()
+    {
+        var resource = new AppResources();
+        resource.SpaZipData = ClassicSpaResources.SpaZipData;
+        resource.IpLocationZipData = Ip2LocationLiteDb.ZipData;
+        resource.Colors.NavigationBarColor = ClassicSpaResources.NavigationBarColor;
+        resource.Colors.WindowBackgroundColor = ClassicSpaResources.WindowBackgroundColor;
+        resource.Colors.ProgressBarColor = ClassicSpaResources.ProgressBarColor;
+        resource.Strings.AppName = "VpnHood Client Sample";
+
+        return new AppOptions("com.vpnhood.client.sample", "VpnHoodSample", IsDebugMode)
+        {
+            StorageFolderPath = AppOptions.BuildStorageFolderPath("VpnHoodSample"),
+            Resources = resource,
+            AccessKeys =
+                [ClientOptions.SampleAccessKey] // This is for test purpose only and can not be used in production
+        };
+    }
+
     public static MauiApp CreateMauiApp()
     {
         var builder = MauiApp
@@ -24,21 +43,8 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
-        // ReSharper disable once UseObjectOrCollectionInitializer
-        var resource = new AppResources();
-        resource.SpaZipData = ClassicSpaResources.SpaZipData;
-        resource.IpLocationZipData = Ip2LocationLiteDb.ZipData;
-        resource.Colors.NavigationBarColor = ClassicSpaResources.NavigationBarColor;
-        resource.Colors.WindowBackgroundColor = ClassicSpaResources.WindowBackgroundColor;
-        resource.Colors.ProgressBarColor = ClassicSpaResources.ProgressBarColor;
-        resource.Strings.AppName = "VpnHood Client Sample";
-
-        VpnHoodMauiApp.Init(new AppOptions("com.vpnhood.client.sample", "VpnHoodSample", IsDebugMode)
-        {
-            StorageFolderPath = AppOptions.BuildStorageFolderPath("VpnHoodSample"),
-            Resources = resource,
-            AccessKeys = [ClientOptions.SampleAccessKey] // This is for test purpose only and can not be used in production
-        });
+        // init VpnHood maui app
+        VpnHoodAppMaui.Init(CreateAppOptions);
 
         // init web server with spa zip data
         VpnHoodAppWebServer.Init(new WebServerOptions());

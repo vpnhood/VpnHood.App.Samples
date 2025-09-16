@@ -3,14 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VpnHood.App.AppLibSample.MauiSpa.MainPage">
 
-    <Grid x:Name="MainLayout" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <Grid x:Name="MainLayout">
         <WebView x:Name="MainWebView" Grid.Row="0" Grid.Column="0"></WebView>
         <Image x:Name="SplashScreen" IsVisible="true"
                Grid.Row="0" Grid.Column="0"
                Aspect="Center"
                BackgroundColor="{StaticResource Primary}"
                Source="splash.png"
-               VerticalOptions="FillAndExpand"
-               HorizontalOptions="FillAndExpand" />
+               VerticalOptions="Fill"
+               HorizontalOptions="Fill" />
     </Grid>
 </ContentPage>

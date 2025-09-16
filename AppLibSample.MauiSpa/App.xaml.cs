@@ -26,6 +26,6 @@ public partial class App
     {
         base.CleanUp();
         if (VpnHoodAppWebServer.IsInit) VpnHoodAppWebServer.Instance.Dispose();
-        if (VpnHoodMauiApp.IsInit) VpnHoodMauiApp.Instance.Dispose();
+        if (VpnHoodAppMaui.IsInit) VpnHoodAppMaui.Instance.Dispose();
     }
 }

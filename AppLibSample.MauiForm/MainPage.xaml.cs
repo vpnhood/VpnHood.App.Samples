@@ -49,20 +49,23 @@ public partial class MainPage : ContentPage
         _ = UpdateIp();
     }
 
-    private bool? _wasConnected;
+    private AppConnectionState? _lastAppConnectionState;
     private async Task UpdateIp()
     {
         using var asyncLock = await AsyncLock.LockAsync("UpdateIp");
-        var isConnected = VpnHoodApp.Instance.State.ConnectionState is AppConnectionState.Connected;
-        if (_wasConnected == null || _wasConnected.Value != isConnected)
+        var appConnectionState = VpnHoodApp.Instance.State.ConnectionState;
+        if (_lastAppConnectionState != appConnectionState &&
+            appConnectionState is AppConnectionState.Connected or AppConnectionState.None)
         {
-            _wasConnected = isConnected;
+            _lastAppConnectionState = VpnHoodApp.Instance.State.ConnectionState;
+            await Task.Delay(1000);
+
             using var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(5));
             var ipAddresses = await IPAddressUtil.GetPublicIpAddresses(cancellationTokenSource.Token);
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 IpLabel.Text = string.Join(" , ", ipAddresses.Select(x => x.ToString()));
-                IpLabel.TextColor = isConnected ? Colors.Green : Colors.Red;
+                IpLabel.TextColor = appConnectionState is AppConnectionState.Connected ? Colors.Green : Colors.Red;
             });
         }
     }

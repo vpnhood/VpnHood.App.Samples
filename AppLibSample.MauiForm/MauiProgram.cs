@@ -12,6 +12,24 @@ namespace VpnHood.App.AppLibSample.MauiForm;
 // ReSharper disable StringLiteralTypo
 public static class MauiProgram
 {
+    private static AppOptions CreateAppOptions()
+    {
+        var resource = new AppResources();
+        resource.IpLocationZipData = Ip2LocationLiteDb.ZipData;
+        resource.SpaZipData = ClassicSpaResources.SpaZipData;
+        resource.Colors.NavigationBarColor = ClassicSpaResources.NavigationBarColor;
+        resource.Colors.WindowBackgroundColor = ClassicSpaResources.WindowBackgroundColor;
+        resource.Colors.ProgressBarColor = ClassicSpaResources.ProgressBarColor; resource.Strings.AppName = "VpnHood Client Sample";
+        resource.Strings.AppName = "VpnHood Client Sample";
+
+        return new AppOptions("com.vpnhood.client.sample", "VpnHoodSample", IsDebugMode)
+        {
+            Resources = resource,
+            AccessKeys = [ClientOptions.SampleAccessKey], // This is for test purpose only and can not be used in production
+            EventWatcherInterval = TimeSpan.FromSeconds(1)
+        };
+    }
+
     public static MauiApp CreateMauiApp()
     {
         var builder = MauiApp.CreateBuilder();
@@ -23,26 +41,14 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
-        var resource = new AppResources();
-        resource.IpLocationZipData = Ip2LocationLiteDb.ZipData;
-        resource.SpaZipData = ClassicSpaResources.SpaZipData;
-        resource.Colors.NavigationBarColor = ClassicSpaResources.NavigationBarColor;
-        resource.Colors.WindowBackgroundColor = ClassicSpaResources.WindowBackgroundColor;
-        resource.Colors.ProgressBarColor = ClassicSpaResources.ProgressBarColor; resource.Strings.AppName = "VpnHood Client Sample";
-        resource.Strings.AppName = "VpnHood Client Sample";
-        VpnHoodMauiApp.Init(new AppOptions("com.vpnhood.client.sample", "VpnHoodSample", IsDebugMode)
-        {
-            Resources = resource, 
-            AccessKeys = [ClientOptions.SampleAccessKey], // This is for test purpose only and can not be used in production
-            EventWatcherInterval = TimeSpan.FromSeconds(1)
-        });
+        // init VpnHood maui app
+        VpnHoodAppMaui.Init(CreateAppOptions);
 
         if (IsDebugMode)
             builder.Logging.AddDebug();
 
         return builder.Build();
     }
-
 
 #if DEBUG
     public static bool IsDebugMode => true;

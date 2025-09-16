@@ -67,20 +67,23 @@ public partial class MainPage : ContentPage
         _ = UpdateIp();
     }
 
-    private bool? _wasConnected;
+    private ClientState? _lastClientState;
     private async Task UpdateIp()
     {
         using var asyncLock = await AsyncLock.LockAsync("UpdateIp");
-        var isConnected = ConnectionInfo.ClientState is ClientState.Connected;
-        if (_wasConnected == null || _wasConnected.Value != isConnected)
+        var clientState = ConnectionInfo.ClientState;
+        if (_lastClientState != clientState &&
+            clientState is ClientState.Connected or ClientState.None or ClientState.Disposed)
         {
-            _wasConnected = isConnected;
+            _lastClientState = clientState;
+            await Task.Delay(1000);
+
             using var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(5));
             var ipAddresses = await IPAddressUtil.GetPublicIpAddresses(cancellationTokenSource.Token);
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 IpLabel.Text = string.Join(" , ", ipAddresses.Select(x => x.ToString()));
-                IpLabel.TextColor = isConnected ? Colors.Green : Colors.Red;
+                IpLabel.TextColor = clientState is ClientState.Connected ? Colors.Green : Colors.Red;
             });
         }
     }
