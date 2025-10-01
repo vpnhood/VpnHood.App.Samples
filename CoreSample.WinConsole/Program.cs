@@ -26,7 +26,7 @@ internal class Program
             ClientId = Guid.Parse("7BD6C156-EEA3-43D5-90AF-B118FE47ED0A").ToString(),
             AccessKey = ClientOptions.SampleAccessKey // This is for test purpose only and can not be used in production
         };
-        var vpnHoodClient = new VpnHoodClient(winVpnAdapter, new SocketFactory(), null, clientOptions);
+        var vpnHoodClient = new VpnHoodClient(winVpnAdapter, new SocketFactory(), null, null, clientOptions);
 
         // connect to VpnHood server
         Console.WriteLine("Connecting...");
