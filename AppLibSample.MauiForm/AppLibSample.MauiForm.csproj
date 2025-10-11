@@ -70,9 +70,9 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.110" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.110" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.9" />
-		<PackageReference Include="VpnHood.AppLib.Assets.ClassicSpa" Version="6.0.743" />
+		<PackageReference Include="VpnHood.AppLib.Assets.ClassicSpa" Version="6.0.748" />
 		<PackageReference Include="VpnHood.AppLib.Assets.Ip2LocationLite" Version="6.0.702" />
-		<PackageReference Include="VpnHood.AppLib.Maui.Common" Version="7.3.762" />
+		<PackageReference Include="VpnHood.AppLib.Maui.Common" Version="7.3.766" />
 	</ItemGroup>
 
 </Project>
