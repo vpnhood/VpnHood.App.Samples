@@ -5,7 +5,7 @@
 		<RootNamespace>VpnHood.App.CoreSample.AndroidForm</RootNamespace>
 		<ApplicationId>com.vpnhood.coresample.AndroidForm</ApplicationId>
 		<ApplicationVersion>438</ApplicationVersion>
-		<TargetFramework>net9.0-android36.0</TargetFramework>
+		<TargetFramework>net10.0-android36.1</TargetFramework>
 		<OutputType>Exe</OutputType>
 		<ApplicationDisplayVersion>3.2.438</ApplicationDisplayVersion>
 		<SupportedOSPlatformVersion>23.0</SupportedOSPlatformVersion>
@@ -40,8 +40,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="VpnHood.Core.Client.VpnServices.Manager" Version="7.3.766" />
-		<PackageReference Include="VpnHood.Core.Client.Device.Android" Version="7.3.766" />
+		<PackageReference Include="VpnHood.Core.Client.VpnServices.Manager" Version="7.5.775-prerelease" />
+		<PackageReference Include="VpnHood.Core.Client.Device.Android" Version="7.5.775-prerelease" />
 	</ItemGroup>
 
 </Project>

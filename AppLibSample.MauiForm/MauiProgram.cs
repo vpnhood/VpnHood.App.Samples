@@ -5,6 +5,7 @@ using VpnHood.AppLib.Assets.ClassicSpa;
 using VpnHood.AppLib.Assets.Ip2LocationLite;
 using VpnHood.AppLib.Maui.Common;
 using VpnHood.Core.Client.Abstractions;
+using VpnHood.Core.Toolkit.Graphics;
 
 namespace VpnHood.App.AppLibSample.MauiForm;
 
@@ -17,9 +18,10 @@ public static class MauiProgram
         var resource = new AppResources();
         resource.IpLocationZipData = Ip2LocationLiteDb.ZipData;
         resource.SpaZipData = ClassicSpaResources.SpaZipData;
-        resource.Colors.NavigationBarColor = ClassicSpaResources.NavigationBarColor;
-        resource.Colors.WindowBackgroundColor = ClassicSpaResources.WindowBackgroundColor;
-        resource.Colors.ProgressBarColor = ClassicSpaResources.ProgressBarColor; resource.Strings.AppName = "VpnHood Client Sample";
+        resource.Colors.NavigationBarColor = VhColor.Parse(ClassicSpaResources.NavigationBarColor);
+        resource.Colors.WindowBackgroundColor = VhColor.Parse(ClassicSpaResources.WindowBackgroundColor);
+        resource.Colors.ProgressBarColor = VhColor.Parse(ClassicSpaResources.ProgressBarColor); 
+        resource.Strings.AppName = "VpnHood Client Sample";
         resource.Strings.AppName = "VpnHood Client Sample";
 
         return new AppOptions("com.vpnhood.client.sample", "VpnHoodSample", IsDebugMode)

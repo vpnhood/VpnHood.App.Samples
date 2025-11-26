@@ -18,7 +18,7 @@ public partial class MainPage
 
     private async Task HideSplashScreen()
     {
-        await SplashScreen.FadeTo(0, 2000);
+        await SplashScreen.FadeToAsync(0, 2000);
         MainLayout.Remove(SplashScreen);
     }
 
