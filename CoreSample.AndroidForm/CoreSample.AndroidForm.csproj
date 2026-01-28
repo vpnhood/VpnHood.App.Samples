@@ -41,7 +41,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="VpnHood.Core.Client.VpnServices.Manager" Version="7.6.787" />
-		<PackageReference Include="VpnHood.Core.Client.Device.Android" Version="7.5.775-prerelease" />
+		<PackageReference Include="VpnHood.Core.Client.Device.Android" Version="7.6.787" />
 	</ItemGroup>
 
 </Project>

@@ -67,7 +67,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.2" />
 		<PackageReference Include="VpnHood.AppLib.Assets.ClassicSpa" Version="7.5.797" />
 		<PackageReference Include="VpnHood.AppLib.WebServer" Version="7.6.787" />
-		<PackageReference Include="VpnHood.AppLib.Maui.Common" Version="7.5.775-prerelease" />
+		<PackageReference Include="VpnHood.AppLib.Maui.Common" Version="7.6.787" />
 		<PackageReference Include="VpnHood.AppLib.Assets.Ip2LocationLite" Version="7.0.720" />
 	</ItemGroup>
 

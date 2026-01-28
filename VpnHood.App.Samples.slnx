@@ -1,0 +1,15 @@
+<Solution>
+  <Project Path="AppLibSample.MauiForm/AppLibSample.MauiForm.csproj">
+    <Deploy />
+  </Project>
+  <Project Path="AppLibSample.MauiSpa/AppLibSample.MauiSpa.csproj">
+    <Deploy />
+  </Project>
+  <Project Path="CoreSample.AndroidForm/CoreSample.AndroidForm.csproj">
+    <Deploy />
+  </Project>
+  <Project Path="CoreSample.MauiForm/CoreSample.MauiForm.csproj">
+    <Deploy />
+  </Project>
+  <Project Path="CoreSample.WinConsole/CoreSample.WinConsole.csproj" />
+</Solution>

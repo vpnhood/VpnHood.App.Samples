@@ -70,11 +70,11 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
-		<PackageReference Include="VpnHood.Core.Client.Device.Android" Version="7.5.775-prerelease" />
+		<PackageReference Include="VpnHood.Core.Client.Device.Android" Version="7.6.787" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'Windows'">
-		<PackageReference Include="VpnHood.Core.Client.Device.Win" Version="7.5.775-prerelease" />
+		<PackageReference Include="VpnHood.Core.Client.Device.Win" Version="7.6.787" />
 	</ItemGroup>
 
 </Project>
