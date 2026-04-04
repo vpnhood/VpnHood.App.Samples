@@ -25,8 +25,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="VpnHood.Core.Client" Version="7.7.794" />
-		<PackageReference Include="VpnHood.Core.VpnAdapters.WinTun" Version="7.7.794" />
+		<PackageReference Include="VpnHood.Core.Client" Version="7.7.797" />
+		<PackageReference Include="VpnHood.Core.VpnAdapters.WinTun" Version="7.7.797" />
 	</ItemGroup>
 
 	<ItemGroup>
