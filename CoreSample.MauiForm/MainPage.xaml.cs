@@ -10,9 +10,9 @@ namespace VpnHood.App.CoreSample.MauiForm;
 // ReSharper disable once RedundantExtendsListEntry
 public partial class MainPage : ContentPage
 {
-    private VpnServiceManager VpnServiceManager => MauiProgram.VpnServiceManager;
-    private ConnectionInfo ConnectionInfo => VpnServiceManager.ConnectionInfo;
-    private bool CanDisconnect => ConnectionInfo.ClientState is 
+    private static VpnServiceManager VpnServiceManager => MauiProgram.VpnServiceManager;
+    private static ConnectionInfo ConnectionInfo => VpnServiceManager.ConnectionInfo;
+    private static bool CanDisconnect => ConnectionInfo.ClientState is 
         ClientState.Connecting or ClientState.Connected or ClientState.Initializing or 
         ClientState.WaitingForAd or ClientState.Waiting;
 

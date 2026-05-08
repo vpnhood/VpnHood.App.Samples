@@ -1,6 +1,5 @@
 ﻿
 using VpnHood.AppLib;
-using VpnHood.AppLib.Maui.Common;
 
 namespace VpnHood.App.AppLibSample.MauiForm;
 public partial class App
@@ -21,9 +20,4 @@ public partial class App
         return window;
     }
 
-    protected override void CleanUp()
-    {
-        base.CleanUp();
-        //if (VpnHoodAppMaui.IsInit) VpnHoodAppMaui.Instance.Dispose();
-    }
 }
