@@ -1,0 +1,13 @@
+<Project>
+	<!-- The one version of the VpnHood packages every sample here consumes: the samples build against
+	     the published packages alone, as a developer's own app would. -->
+	<PropertyGroup>
+		<VhPackageVersion>8.2.854-local5</VhPackageVersion>
+	</PropertyGroup>
+
+	<!-- Packages of a VpnHood not yet released, to build against before they are: a .packages folder
+	     beside this file, which git ignores, joins the package sources when it exists. -->
+	<PropertyGroup Condition="Exists('$(MSBuildThisFileDirectory).packages')">
+		<RestoreAdditionalProjectSources>$(MSBuildThisFileDirectory).packages</RestoreAdditionalProjectSources>
+	</PropertyGroup>
+</Project>

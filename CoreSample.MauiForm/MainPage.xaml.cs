@@ -1,8 +1,8 @@
 ﻿using VpnHood.Core.Client.Abstractions;
 using VpnHood.Core.Client.VpnServices.Abstractions;
 using VpnHood.Core.Client.VpnServices.Manager;
-using VpnHood.Core.Toolkit.Net;
-using VpnHood.Core.Toolkit.Utils;
+using VpnHood.Net.Toolkit.Net;
+using VpnHood.Net.Toolkit.Utils;
 
 namespace VpnHood.App.CoreSample.MauiForm;
 
@@ -43,11 +43,14 @@ public partial class MainPage : ContentPage
             ErrorLabel.Text = string.Empty;
 
             // Connect
-            await VpnServiceManager.Start(new ClientOptions
+            await VpnServiceManager.Start(new VpnServiceOptions
             {
-                AppName = "TestApp",
-                ClientId = Guid.Parse("7BD6C156-EEA3-43D5-90AF-B118FE47ED0B").ToString(),
-                AccessKey = ClientOptions.SampleAccessKey // This is for test purpose only and can not be used in production
+                ClientOptions = new ClientOptions
+                {
+                    AdapterName = "VpnHoodSample",
+                    ClientId = Guid.Parse("7BD6C156-EEA3-43D5-90AF-B118FE47ED0B").ToString(),
+                    AccessKey = ClientOptions.SampleAccessKey // This is for test purpose only and can not be used in production
+                }
             }, CancellationToken.None);
         }
         catch (Exception ex)

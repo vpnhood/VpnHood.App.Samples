@@ -1,8 +1,8 @@
 ﻿using Android.App;
 using Android.Service.QuickSettings;
-using VpnHood.AppLib.Droid.Common.Activities;
-using VpnHood.AppLib.Droid.Common.Constants;
-using VpnHood.AppLib.Maui.Common;
+using VpnHood.AppLib.App.Android.Activities;
+using VpnHood.AppLib.App.Android.Constants;
+using VpnHood.AppUi.Hosting.Maui;
 
 // ReSharper disable once CheckNamespace
 namespace VpnHood.App.AppLibSample.MauiForm;

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using VpnHood.Core.Client.Device;
+using VpnHood.Core.Client.Devices.Abstractions;
 using VpnHood.Core.Client.VpnServices.Manager;
 
 namespace VpnHood.App.CoreSample.MauiForm;
@@ -7,9 +7,10 @@ namespace VpnHood.App.CoreSample.MauiForm;
 public static class MauiProgram
 {
     public static VpnServiceManager VpnServiceManager { get; private set; } = null!;
-    public static MauiApp CreateMauiApp(IDevice device)
+    public static MauiApp CreateMauiApp(IDevice? device)
     {
-        VpnServiceManager = new VpnServiceManager(device, eventWatcherInterval: TimeSpan.FromSeconds(1));
+        if (device != null)
+            VpnServiceManager = new VpnServiceManager(device, eventWatcherInterval: TimeSpan.FromSeconds(1));
 
         var builder = MauiApp.CreateBuilder();
         builder

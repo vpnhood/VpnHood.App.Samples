@@ -1,7 +1,7 @@
 ﻿using VpnHood.Core.Client;
 using VpnHood.Core.Client.Abstractions;
-using VpnHood.Core.Tunneling.Sockets;
-using VpnHood.Core.VpnAdapters.WinTun;
+using VpnHood.Net.Toolkit.Sockets;
+using VpnHood.Net.VpnAdapters.WinTun;
 
 // ReSharper disable StringLiteralTypo
 namespace VpnHood.App.CoreSample.WinConsole;
@@ -12,24 +12,25 @@ internal class Program
     {
         Console.WriteLine("Hello VpnClient!");
 
-        // a clientId should be generated for each client
+        // the network adapter the tunnel's packets go through; it needs administrator rights
         var winVpnAdapter = new WinTunVpnAdapter(new WinVpnAdapterSettings
         {
-            AdapterName = "TestAdapter",
+            AdapterName = "VpnHoodSample",
             Blocking = true,
             AutoDisposePackets = true
         });
 
         var clientOptions = new ClientOptions
         {
-            AppName = "TestApp",
+            AdapterName = "VpnHoodSample",
+            // a clientId should be generated for each client
             ClientId = Guid.Parse("7BD6C156-EEA3-43D5-90AF-B118FE47ED0A").ToString(),
             AccessKey = ClientOptions.SampleAccessKey // This is for test purpose only and can not be used in production
         };
         var vpnHoodClient = new VpnHoodClient(
-            winVpnAdapter, new SocketFactory(), 
-            netFilter: null, 
-            storageFolder: null, 
+            winVpnAdapter, new SystemSocketFactory(),
+            netFilter: null,
+            proxyConnector: null,
             tracker: null,
             options: clientOptions);
 

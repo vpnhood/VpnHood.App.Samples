@@ -1,18 +1,28 @@
-﻿using VpnHood.AppLib;
-using VpnHood.Core.Toolkit.Net;
-using VpnHood.Core.Toolkit.Utils;
+﻿using VpnHood.AppLib.Api;
+using VpnHood.AppLib.Api.App;
+using VpnHood.AppUi.Hosting.Maui;
+using VpnHood.Net.Toolkit.Net;
+using VpnHood.Net.Toolkit.Utils;
 
 namespace VpnHood.App.AppLibSample.MauiForm;
 
 // ReSharper disable once RedundantExtendsListEntry
 public partial class MainPage : ContentPage
 {
+    // the app's API, the same calls every VpnHood UI makes
+    private static VpnHoodApi Api => VpnHoodAppMaui.Instance.Api;
+
     public MainPage()
     {
         InitializeComponent();
-        VpnHoodApp.Instance.ClearLastError();
-        VpnHoodApp.Instance.ConnectionStateChanged += (_, _) => UpdateUi();
-        UpdateUi();
+        _ = Api.App.ClearLastError(CancellationToken.None);
+
+        // the API answers calls and raises no events, so the page reads the state once a second
+        Dispatcher.StartTimer(TimeSpan.FromSeconds(1), () =>
+        {
+            _ = UpdateUi();
+            return true;
+        });
     }
 
     private void OnConnectClicked(object sender, EventArgs e)
@@ -24,11 +34,12 @@ public partial class MainPage : ContentPage
     {
         try
         {
-            if (VpnHoodApp.Instance.State.CanConnect)
-                await VpnHoodApp.Instance.Connect();
+            var state = await Api.App.GetState(CancellationToken.None);
+            if (state.CanConnect)
+                await Api.App.Connect(vpnProfileId: null, serverLocation: null, ConnectPlanId.Normal, CancellationToken.None);
 
-            else if (VpnHoodApp.Instance.State.CanDisconnect)
-                _ = VpnHoodApp.Instance.Disconnect();
+            else if (state.CanDisconnect)
+                await Api.App.Disconnect(CancellationToken.None);
         }
         catch (Exception ex)
         {
@@ -36,28 +47,25 @@ public partial class MainPage : ContentPage
         }
     }
 
-    private void UpdateUi()
+    private async Task UpdateUi()
     {
-        MainThread.BeginInvokeOnMainThread(() =>
-        {
-            StatusLabel.Text = VpnHoodApp.Instance.State.ConnectionState.ToString();
-            CounterBtn.IsEnabled = VpnHoodApp.Instance.State.CanConnect || VpnHoodApp.Instance.State.CanDisconnect;
-            CounterBtn.Text = VpnHoodApp.Instance.State.CanConnect ? "Connect" : "Disconnect";
-            ErrorLabel.Text = VpnHoodApp.Instance.State.LastError != null ? $"Error: {VpnHoodApp.Instance.State.LastError?.Message}" : string.Empty;
-        });
+        var state = await Api.App.GetState(CancellationToken.None);
+        StatusLabel.Text = state.ConnectionState.ToString();
+        CounterBtn.IsEnabled = state.CanConnect || state.CanDisconnect;
+        CounterBtn.Text = state.CanConnect ? "Connect" : "Disconnect";
+        ErrorLabel.Text = state.LastError != null ? $"Error: {state.LastError.Message}" : string.Empty;
 
-        _ = UpdateIp();
+        _ = UpdateIp(state.ConnectionState);
     }
 
     private AppConnectionState? _lastAppConnectionState;
-    private async Task UpdateIp()
+    private async Task UpdateIp(AppConnectionState appConnectionState)
     {
         using var asyncLock = await AsyncLock.LockAsync("UpdateIp");
-        var appConnectionState = VpnHoodApp.Instance.State.ConnectionState;
         if (_lastAppConnectionState != appConnectionState &&
             appConnectionState is AppConnectionState.Connected or AppConnectionState.None)
         {
-            _lastAppConnectionState = VpnHoodApp.Instance.State.ConnectionState;
+            _lastAppConnectionState = appConnectionState;
             await Task.Delay(1000);
 
             using var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(5));

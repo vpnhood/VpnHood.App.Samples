@@ -1,7 +1,5 @@
-﻿
-using VpnHood.AppLib;
+﻿namespace VpnHood.App.AppLibSample.MauiForm;
 
-namespace VpnHood.App.AppLibSample.MauiForm;
 public partial class App
 {
     public App()
@@ -11,11 +9,12 @@ public partial class App
 
     protected override Window CreateWindow(IActivationState? activationState)
     {
+        // a phone's shape where the app has a window of its own size
         var window = new Window(new AppShell())
         {
-            Width = VpnHoodApp.Instance.Resources.WindowSize.Width,
-            Height = VpnHoodApp.Instance.Resources.WindowSize.Height,
-            Title = VpnHoodApp.Instance.Resources.Strings.AppName
+            Width = 400,
+            Height = 700,
+            Title = "VpnHood! AppLib Sample"
         };
         return window;
     }

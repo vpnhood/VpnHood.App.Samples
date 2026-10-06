@@ -3,7 +3,7 @@
 
 // ReSharper disable once CheckNamespace
 
-using VpnHood.Core.Client.Device.Win;
+using VpnHood.Core.Client.Devices.Windows;
 
 // ReSharper disable once CheckNamespace
 namespace VpnHood.App.CoreSample.MauiForm.WinUI;
@@ -25,7 +25,7 @@ public partial class App : MauiWinUIApplication
     protected override MauiApp CreateMauiApp()
     {
         var storageFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VpnHood.App.CoreSample.MauiForm");
-        var device =  new WinDevice(storageFolder, isDebugMode: true);
+        var device =  new WindowsDevice(storageFolder, isDebugMode: true);
         return MauiProgram.CreateMauiApp(device);
     }
 

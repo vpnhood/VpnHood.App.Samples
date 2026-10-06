@@ -1,34 +1,32 @@
 ﻿using Microsoft.Extensions.Logging;
-using VpnHood.AppLib;
-using VpnHood.AppLib.Abstractions;
-using VpnHood.AppLib.Assets.ClassicSpa;
-using VpnHood.AppLib.Assets.Ip2LocationLite;
-using VpnHood.AppLib.Maui.Common;
+using VpnHood.AppLib.App;
+using VpnHood.AppUi.Hosting.Maui;
 using VpnHood.Core.Client.Abstractions;
-using VpnHood.Core.Toolkit.Graphics;
 
 namespace VpnHood.App.AppLibSample.MauiForm;
 
-// ReSharper disable UseObjectOrCollectionInitializer
 // ReSharper disable StringLiteralTypo
 public static class MauiProgram
 {
-    private static AppOptions CreateAppOptions()
+    // Who the app is and its options: what every VpnHood app hands its platform. The app runs in this
+    // process, and the pages talk to it through VpnHoodAppMaui.Instance.Api.
+    private static AppInitParams CreateInitParams()
     {
-        var resource = new AppResources();
-        resource.IpLocationZipData = Ip2LocationLiteDb.ZipData;
-        resource.SpaZipData = ClassicSpaResources.SpaZipData;
-        resource.Colors.NavigationBarColor = VhColor.Parse(ClassicSpaResources.NavigationBarColor);
-        resource.Colors.WindowBackgroundColor = VhColor.Parse(ClassicSpaResources.WindowBackgroundColor);
-        resource.Colors.ProgressBarColor = VhColor.Parse(ClassicSpaResources.ProgressBarColor); 
-        resource.Strings.AppName = "VpnHood Client Sample";
-        resource.Strings.AppName = "VpnHood Client Sample";
-
-        return new AppOptions("com.vpnhood.client.sample", "VpnHoodSample", IsDebugMode)
+        return new AppInitParams
         {
-            Resources = resource,
-            AccessKeys = [ClientOptions.SampleAccessKey], // This is for test purpose only and can not be used in production
-            EventWatcherInterval = TimeSpan.FromSeconds(1)
+            AppId = "com.vpnhood.applibsample.mauiform",
+            AppName = "VpnHood! AppLib Sample",
+            StorageFolderName = "VpnHoodAppLibSample",
+            AppOptionsFactory = context => new AppOptions(context, IsDebugMode)
+            {
+                PackageTitle = "VpnHoodAppLibSample",
+                CompanyName = "VpnHood",
+                // the logo and the consent summary in a UI store; this sample's own pages read neither
+                LogoAssetPath = "images/logo.png",
+                PrivacyConsentAssetName = "privacy-consent",
+                AccessKeys = [ClientOptions.SampleAccessKey], // This is for test purpose only and can not be used in production
+                EventWatcherInterval = TimeSpan.FromSeconds(1)
+            }
         };
     }
 
@@ -44,7 +42,7 @@ public static class MauiProgram
             });
 
         // init VpnHood maui app
-        VpnHoodAppMaui.Init(CreateAppOptions);
+        VpnHoodAppMaui.Init(CreateInitParams());
 
         if (IsDebugMode)
             builder.Logging.AddDebug();

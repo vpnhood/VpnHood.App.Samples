@@ -1,12 +1,12 @@
 ﻿using Android.Graphics;
 using VpnHood.Core.Client.Abstractions;
-using VpnHood.Core.Client.Device.Droid;
-using VpnHood.Core.Client.Device.Droid.ActivityEvents;
-using VpnHood.Core.Client.Device.UiContexts;
+using VpnHood.Core.Client.Devices.Abstractions.UiContexts;
+using VpnHood.Core.Client.Devices.Android;
+using VpnHood.Core.Client.Devices.Android.ActivityEvents;
 using VpnHood.Core.Client.VpnServices.Abstractions;
 using VpnHood.Core.Client.VpnServices.Manager;
-using VpnHood.Core.Toolkit.Net;
-using VpnHood.Core.Toolkit.Utils;
+using VpnHood.Net.Toolkit.Net;
+using VpnHood.Net.Toolkit.Utils;
 
 // ReSharper disable StringLiteralTypo
 namespace VpnHood.App.CoreSample.AndroidForm;
@@ -19,7 +19,7 @@ public class MainActivity : ActivityEvent
     private TextView _statusTextView = null!;
     private TextView _ipTextView = null!;
 
-    private VpnServiceManager VpnServiceManager { get; } = new(new AndroidDevice(), TimeSpan.FromSeconds(1));
+    private VpnServiceManager VpnServiceManager { get; } = new(AndroidDevice.Create(), TimeSpan.FromSeconds(1));
     private ConnectionInfo ConnectionInfo => VpnServiceManager.ConnectionInfo;
     private bool CanDisconnect => ConnectionInfo.ClientState is
         ClientState.Connecting or ClientState.Connected or ClientState.Initializing or
@@ -92,11 +92,14 @@ public class MainActivity : ActivityEvent
             }
 
             // start vpn 
-            await VpnServiceManager.Start(new ClientOptions
+            await VpnServiceManager.Start(new VpnServiceOptions
             {
-                AppName = "TestApp",
-                ClientId = Guid.Parse("7BD6C156-EEA3-43D5-90AF-B118FE47ED0B").ToString(),
-                AccessKey = ClientOptions.SampleAccessKey // This is for test purpose only and can not be used in production
+                ClientOptions = new ClientOptions
+                {
+                    AdapterName = "VpnHoodSample",
+                    ClientId = Guid.Parse("7BD6C156-EEA3-43D5-90AF-B118FE47ED0B").ToString(),
+                    AccessKey = ClientOptions.SampleAccessKey // This is for test purpose only and can not be used in production
+                }
             }, CancellationToken.None);
 
         }
