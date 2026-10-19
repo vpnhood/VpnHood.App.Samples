@@ -91,8 +91,8 @@ public class MainActivity : ActivityEvent
                 return;
             }
 
-            // start vpn 
-            await VpnServiceManager.Start(new VpnServiceOptions
+            // start vpn; this activity asks for the VPN permission if Android needs it
+            await VpnServiceManager.Start(AppUiContext.Context, new VpnServiceOptions
             {
                 ClientOptions = new ClientOptions
                 {

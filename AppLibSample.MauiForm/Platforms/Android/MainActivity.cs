@@ -3,6 +3,7 @@ using Android.Service.QuickSettings;
 using VpnHood.AppLib.App.Android.Activities;
 using VpnHood.AppLib.App.Android.Constants;
 using VpnHood.AppUi.Hosting.Maui;
+using VpnHood.Net.Toolkit.Graphics;
 
 // ReSharper disable once CheckNamespace
 namespace VpnHood.App.AppLibSample.MauiForm;
@@ -21,6 +22,7 @@ public class MainActivity : VpnHoodMauiMainActivity
 {
     protected override AndroidAppMainActivityHandler CreateMainActivityHandler()
     {
-        return new AndroidAppMainActivityHandler(this, new AndroidMainActivityOptions());
+        // no theme colour for the system bars: they keep the system's around this sample's own pages
+        return new AndroidAppMainActivityHandler(this, new AndroidMainActivityOptions(), Task.FromResult<VhColor?>(null));
     }
 }

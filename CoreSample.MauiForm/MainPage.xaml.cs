@@ -1,4 +1,5 @@
 ﻿using VpnHood.Core.Client.Abstractions;
+using VpnHood.Core.Client.Devices.Abstractions.UiContexts;
 using VpnHood.Core.Client.VpnServices.Abstractions;
 using VpnHood.Core.Client.VpnServices.Manager;
 using VpnHood.Net.Toolkit.Net;
@@ -42,8 +43,8 @@ public partial class MainPage : ContentPage
             // Clear error
             ErrorLabel.Text = string.Empty;
 
-            // Connect
-            await VpnServiceManager.Start(new VpnServiceOptions
+            // Connect; the activity asks for the VPN permission where Android needs it
+            await VpnServiceManager.Start(AppUiContext.Context, new VpnServiceOptions
             {
                 ClientOptions = new ClientOptions
                 {

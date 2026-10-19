@@ -16,6 +16,8 @@ public static class MauiProgram
         {
             AppId = "com.vpnhood.applibsample.mauiform",
             AppName = "VpnHood! AppLib Sample",
+            AppVersion = typeof(MauiProgram).Assembly.GetName().Version ??
+                         throw new InvalidOperationException("The sample's assembly has no version."),
             StorageFolderName = "VpnHoodAppLibSample",
             AppOptionsFactory = context => new AppOptions(context, IsDebugMode)
             {
