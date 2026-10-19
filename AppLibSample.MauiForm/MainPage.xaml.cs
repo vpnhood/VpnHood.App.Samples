@@ -17,7 +17,9 @@ public partial class MainPage : ContentPage
         InitializeComponent();
         _ = Api.App.ClearLastError(CancellationToken.None);
 
-        // the API answers calls and raises no events, so the page reads the state once a second
+        // the API answers calls and raises no events, so the page reads the state once a second, and
+        // at once when it shows
+        Loaded += (_, _) => _ = UpdateUi();
         Dispatcher.StartTimer(TimeSpan.FromSeconds(1), () =>
         {
             _ = UpdateUi();
@@ -50,6 +52,12 @@ public partial class MainPage : ContentPage
     private async Task UpdateUi()
     {
         var state = await Api.App.GetState(CancellationToken.None);
+
+        // the app's window reaches behind the system bars, and the state gives their heights in
+        // pixels: the page keeps clear of them, as every VpnHood UI does
+        var density = DeviceDisplay.MainDisplayInfo.Density;
+        Padding = new Thickness(0, state.SystemBarsInfo.TopHeight / density, 0, state.SystemBarsInfo.BottomHeight / density);
+
         StatusLabel.Text = state.ConnectionState.ToString();
         CounterBtn.IsEnabled = state.CanConnect || state.CanDisconnect;
         CounterBtn.Text = state.CanConnect ? "Connect" : "Disconnect";
