@@ -3,7 +3,7 @@
 
 // ReSharper disable once CheckNamespace
 
-using VpnHood.Core.Client.Devices.Windows;
+using VpnHood.Core.Client.Devices.WindowsTun;
 
 // ReSharper disable once CheckNamespace
 namespace VpnHood.App.CoreSample.MauiForm.WinUI;

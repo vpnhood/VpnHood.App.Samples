@@ -32,11 +32,12 @@ internal class Program
             netFilter: null,
             proxyConnector: null,
             tracker: null,
+            workingFolder: Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VpnHood.App.CoreSample.WinConsole"),
             options: clientOptions);
 
         // connect to VpnHood server
         Console.WriteLine("Connecting...");
-        await vpnHoodClient.Connect();
+        await vpnHoodClient.Connect(CancellationToken.None);
         Console.WriteLine("Connected.");
 
         Console.ForegroundColor = ConsoleColor.Yellow;

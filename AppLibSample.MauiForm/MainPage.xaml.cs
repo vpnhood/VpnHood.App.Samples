@@ -63,20 +63,21 @@ public partial class MainPage : ContentPage
         CounterBtn.Text = state.CanConnect ? "Connect" : "Disconnect";
         ErrorLabel.Text = state.LastError != null ? $"Error: {state.LastError.Message}" : string.Empty;
 
-        _ = UpdateIp(state.ConnectionState);
+        _ = UpdateIp(state.ConnectionState, CancellationToken.None);
     }
 
     private AppConnectionState? _lastAppConnectionState;
-    private async Task UpdateIp(AppConnectionState appConnectionState)
+    private async Task UpdateIp(AppConnectionState appConnectionState, CancellationToken cancellationToken)
     {
-        using var asyncLock = await AsyncLock.LockAsync("UpdateIp");
+        using var asyncLock = await AsyncLock.LockAsync("UpdateIp", cancellationToken);
         if (_lastAppConnectionState != appConnectionState &&
             appConnectionState is AppConnectionState.Connected or AppConnectionState.None)
         {
             _lastAppConnectionState = appConnectionState;
-            await Task.Delay(1000);
+            await Task.Delay(1000, cancellationToken);
 
-            using var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+            using var cancellationTokenSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            cancellationTokenSource.CancelAfter(TimeSpan.FromSeconds(5));
             var ipAddresses = await IPAddressUtil.GetPublicIpAddresses(cancellationTokenSource.Token);
             MainThread.BeginInvokeOnMainThread(() =>
             {

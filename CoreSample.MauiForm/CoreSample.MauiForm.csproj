@@ -73,7 +73,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'Windows'">
-		<PackageReference Include="VpnHood.Core.Client.Devices.Windows" Version="$(VhPackageVersion)" />
+		<PackageReference Include="VpnHood.Core.Client.Devices.WindowsTun" Version="$(VhPackageVersion)" />
 	</ItemGroup>
 
 </Project>

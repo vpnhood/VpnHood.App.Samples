@@ -123,21 +123,22 @@ public class MainActivity : ActivityEvent
             _statusTextView.SetTextColor(ConnectionInfo.ClientState is ClientState.Connected ? Color.DarkGreen : Color.DarkRed);
             _connectButton.Text = ConnectionInfo.ClientState is ClientState.None or ClientState.Disposed ? "Connect" : "Disconnect";
         });
-        _ = UpdateIp();
+        _ = UpdateIp(CancellationToken.None);
     }
 
     private ClientState? _lastClientState;
-    private async Task UpdateIp()
+    private async Task UpdateIp(CancellationToken cancellationToken)
     {
-        using var asyncLock = await AsyncLock.LockAsync("UpdateIp");
+        using var asyncLock = await AsyncLock.LockAsync("UpdateIp", cancellationToken);
         var clientState = ConnectionInfo.ClientState;
         if (_lastClientState != clientState &&
             clientState is ClientState.Connected or ClientState.None or ClientState.Disposed)
         {
             _lastClientState = clientState;
-            await Task.Delay(1000);
+            await Task.Delay(1000, cancellationToken);
 
-            using var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+            using var cancellationTokenSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            cancellationTokenSource.CancelAfter(TimeSpan.FromSeconds(5));
             var ipAddresses = await IPAddressUtil.GetPublicIpAddresses(cancellationTokenSource.Token);
             RunOnUiThread(() =>
             {
