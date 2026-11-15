@@ -43,7 +43,7 @@ dotnet run -- 203.0.113.10:9443 --tun
 It then says `The server is listening on port 9443, with a TUN adapter.`, and removes the adapter and its NAT when it
 stops.
 
-A client connects with that key in place of the sample server's: `ClientOptions.AccessKey` in
+A client connects with that key in place of the test server's: `ClientOptions.AccessKey` in
 [CoreSample.WinConsole](../CoreSample.WinConsole), for one.
 
 ## Read first

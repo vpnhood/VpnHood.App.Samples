@@ -8,7 +8,7 @@ billing when you set them up.
 **Who it is for:** you want a complete VPN app under screens of your own, without writing what a VPN app does beyond
 connecting.
 
-![The sample connected to the sample server: Disconnect, the connection's state, and the server's IP addresses](screenshot.png)
+![The sample connected to the test server: Disconnect, the connection's state, and the server's IP addresses](screenshot.png)
 
 ## What you need
 
@@ -23,7 +23,7 @@ Connect on Android asks to show notifications, then brings Android's connection 
 
 ## Read first
 
-- [MauiProgram.cs](MauiProgram.cs): `CreateInitParams`, who the app is and its options, with the sample server's access
+- [MauiProgram.cs](MauiProgram.cs): `CreateInitParams`, who the app is and its options, with the test server's access
   key (`ClientOptions.SampleAccessKey`), which `VpnHoodAppMaui.Init` starts.
 - [MainPage.xaml.cs](MainPage.xaml.cs): the page reads the app's state through `VpnHoodAppMaui.Instance.Api` once a
   second, and connects and disconnects through it.

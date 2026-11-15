@@ -2,13 +2,13 @@
 
 Small apps that show VpnHood at work, each built on VpnHood's NuGet packages alone, as an app of yours would be: VPN
 clients that write more or less of the app themselves, and a VPN server of your own. The clients connect to VpnHood's
-sample server, which is for tests and ends each session after a few minutes. Each sample's folder has a README with
+test server, which ends each session after a few minutes. Each sample's folder has a README with
 what it needs, how to run it and which file to read first.
 
 <p>
-<img src="CoreSample.AndroidForm/screenshot.png" width="150" alt="CoreSample.AndroidForm, connected to the sample server">
-<img src="CoreSample.MauiForm/screenshot.png" width="150" alt="CoreSample.MauiForm, connected to the sample server">
-<img src="AppLibSample.MauiForm/screenshot.png" width="150" alt="AppLibSample.MauiForm, connected to the sample server">
+<img src="CoreSample.AndroidForm/screenshot.png" width="150" alt="CoreSample.AndroidForm, connected to the test server">
+<img src="CoreSample.MauiForm/screenshot.png" width="150" alt="CoreSample.MauiForm, connected to the test server">
+<img src="AppLibSample.MauiForm/screenshot.png" width="150" alt="AppLibSample.MauiForm, connected to the test server">
 </p>
 
 ## Which one to read

@@ -1,13 +1,13 @@
 # CoreSample.AndroidForm
 
 The VPN engine alone on Android, in a plain activity: Connect starts the VPN service through `VpnServiceManager`, the
-engine in it connects to VpnHood's sample server, and the page shows the connection's state and your public IP
+engine in it connects to VpnHood's test server, and the page shows the connection's state and your public IP
 addresses, the server's once connected.
 
 **Who it is for:** you write an Android app in .NET for Android, without MAUI, with screens of your own, and handle
 access keys, reconnection and the rest yourself.
 
-![The sample connected to the sample server: Disconnect, its state, and the server's IP addresses](screenshot.png)
+![The sample connected to the test server: Disconnect, its state, and the server's IP addresses](screenshot.png)
 
 ## What you need
 
@@ -27,7 +27,7 @@ The first Connect brings Android's connection request: OK lets the app make a VP
 ## Read first
 
 [MainActivity.cs](MainActivity.cs): `ConnectTask` starts the service with the client's options (`VpnServiceOptions`,
-with the sample server's access key, `ClientOptions.SampleAccessKey`), `UpdateUi` follows
+with the test server's access key, `ClientOptions.SampleAccessKey`), `UpdateUi` follows
 `VpnServiceManager.StateChanged`, and `OnResume` hands the activity to the engine (`AppUiContext.Context`), so it can ask
 for the VPN permission.
 

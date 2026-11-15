@@ -1,13 +1,13 @@
 # CoreSample.MauiForm
 
 The VPN engine alone in a MAUI app, on Android and Windows: one page whose Connect starts the VPN service through
-`VpnServiceManager`, connected to VpnHood's sample server, with the connection's state and your public IP addresses,
+`VpnServiceManager`, connected to VpnHood's test server, with the connection's state and your public IP addresses,
 the server's once connected.
 
 **Who it is for:** you write a MAUI app and want the VPN in it on Android and Windows, with screens of your own, and
 handle access keys, reconnection and the rest yourself.
 
-![The sample connected to the sample server on Android: Disconnect, its state, and the server's IP addresses](screenshot.png)
+![The sample connected to the test server on Android: Disconnect, its state, and the server's IP addresses](screenshot.png)
 
 ## What you need
 

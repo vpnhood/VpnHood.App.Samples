@@ -1,6 +1,6 @@
 # CoreSample.WinConsole
 
-The VPN engine alone on Windows, in a console: `VpnHoodClient` over a WinTun adapter connects to VpnHood's sample
+The VPN engine alone on Windows, in a console: `VpnHoodClient` over a WinTun adapter connects to VpnHood's test
 server, and you browse through it until you press Ctrl+C. No app around it: no UI, no settings, no reconnection.
 
 **Who it is for:** you put the VPN into a Windows program or service of your own, or want to see the engine with the
@@ -36,8 +36,8 @@ Press Ctrl+C to stop.
 
 ## Read first
 
-[Program.cs](Program.cs), all of it: the adapter (`WinTunVpnAdapter`), the client's options with the sample server's
+[Program.cs](Program.cs), all of it: the adapter (`WinTunVpnAdapter`), the client's options with the test server's
 access key (`ClientOptions.SampleAccessKey`), and `VpnHoodClient.Connect`.
 
-The sample server is for tests: it ends each session after a few minutes. Your own app connects with an access key of
+The test server ends each session after a few minutes. Your own app connects with an access key of
 your own server.
