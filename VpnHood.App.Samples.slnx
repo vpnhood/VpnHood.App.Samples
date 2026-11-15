@@ -8,5 +8,6 @@
   <Project Path="CoreSample.MauiForm/CoreSample.MauiForm.csproj">
     <Deploy />
   </Project>
+  <Project Path="CoreSample.Server/CoreSample.Server.csproj" />
   <Project Path="CoreSample.WinConsole/CoreSample.WinConsole.csproj" />
 </Solution>

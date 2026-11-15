@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Description>A VpnHood server in a console app of your own, with access keys kept in files</Description>
+		<TargetFramework>net11.0</TargetFramework>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>VpnHood.App.CoreSample.Server</RootNamespace>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Company>OmegaHood LLC</Company>
+		<Copyright>© OmegaHood LLC. All rights reserved.</Copyright>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="VpnHood.Core.Server" Version="$(VhPackageVersion)" />
+		<PackageReference Include="VpnHood.Core.Server.Access.Managers.FileAccessManagers" Version="$(VhPackageVersion)" />
+		<PackageReference Include="VpnHood.Net.VpnAdapters.LinuxTun" Version="$(VhPackageVersion)" />
+		<PackageReference Include="VpnHood.Net.VpnAdapters.WinTun" Version="$(VhPackageVersion)" />
+	</ItemGroup>
+</Project>
