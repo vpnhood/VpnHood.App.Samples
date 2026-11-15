@@ -11,7 +11,7 @@ using VpnHood.Net.Toolkit.Utils;
 // ReSharper disable StringLiteralTypo
 namespace VpnHood.App.CoreSample.AndroidForm;
 
-[Activity(Label = "@string/app_name", MainLauncher = true)]
+[Activity(Label = "@string/app_name", MainLauncher = true, Theme = "@style/AppTheme")]
 // ReSharper disable once UnusedMember.Global
 public class MainActivity : ActivityEvent
 {
@@ -71,7 +71,11 @@ public class MainActivity : ActivityEvent
         note.Text = "* Please contact us if this sample is outdated or not working. Report issues at: https://github.com/vpnhood/VpnHood/issues";
         mainView.AddView(note);
 
-        SetContentView(mainView);
+        // the page keeps out from under the system bars, which Android 15 and later draw over it
+        var page = new FrameLayout(this);
+        page.SetFitsSystemWindows(true);
+        page.AddView(mainView);
+        SetContentView(page);
         UpdateUi();
     }
 

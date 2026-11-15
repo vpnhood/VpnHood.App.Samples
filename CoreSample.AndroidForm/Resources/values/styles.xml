@@ -1,11 +1,14 @@
 <resources>
 
-  <!-- Base application theme. --><!--
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        --><!-- Customize your theme here. --><!--
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>-->
+  <!-- A white page with no title bar, and system bars in the page's colour with dark icons, as AppLibSample.MauiForm
+       has. From Android 15 the bars are clear over the page, which keeps out from under them (MainActivity). -->
+  <style name="AppTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
+    <item name="android:colorBackground">@android:color/white</item>
+    <item name="android:windowBackground">@android:color/white</item>
+    <item name="android:statusBarColor">?android:attr/colorBackground</item>
+    <item name="android:navigationBarColor">?android:attr/colorBackground</item>
+    <item name="android:windowLightStatusBar">true</item>
+    <item name="android:windowLightNavigationBar">true</item>
+  </style>
 
 </resources>
