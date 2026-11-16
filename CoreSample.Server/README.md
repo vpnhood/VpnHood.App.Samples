@@ -6,9 +6,12 @@ traffic over connections of its own, so it needs no administrator. With `--tun`,
 with NAT, as the VpnHood server app does: the server then carries whole IP packets, and a client's TCP goes as packets
 in the tunnel instead of being forwarded.
 
+> [!TIP]
+> Most people don't need to build a server: the VpnHood server app is ready to install, and it is the recommended way
+> to run one. [Install the VpnHood server](https://www.vpnhood.com/vpnhood-server/docs/install/).
+
 **Who it is for:** you run VpnHood servers from a .NET program of your own, with your own way to hand out keys or to
-watch the server, or want to see the server engine with the least code around it. To install a ready server instead,
-use the VpnHood server app: [Install the VpnHood server](https://www.vpnhood.com/vpnhood-server/docs/install/).
+watch the server, or want to see the server engine with the least code around it.
 
 ## What you need
 
